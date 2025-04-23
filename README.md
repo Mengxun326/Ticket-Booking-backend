@@ -1,6 +1,6 @@
 # 《Ticket-Booking-backend：Spring Boot 后端项目介绍与使用指南》
 
-以下是一个基于你提供的代码库生成的 README 文件示例，它涵盖了项目的基本信息、运行环境、使用方法、项目结构等内容。
+安徽理工大学信息安全23-1王智杰
 
 # Ticket-Booking-backend
 
