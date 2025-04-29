@@ -1,0 +1,17 @@
+spring:
+  application:
+    name:ticket-booking
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.121.180.250:3306/ticket-booking
+    username: Ticket-Booking
+    password: S7HmK22NMYHynYKj
+  sql:
+    init:
+      schema-locations: classpath:db/schema-h2.sql
+      data-locations: classpath:db/data-h2.sql
+server:
+  port: 8080
+
+
