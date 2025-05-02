@@ -3,7 +3,7 @@ spring:
     name:ticket-booking
   # DataSource Config
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.121.180.250:3306/ticket-booking
     username: Ticket-Booking
     password: S7HmK22NMYHynYKj
