@@ -35,4 +35,40 @@ public class UserServiceImplTest {
         assertTrue(result);
 
     }
+
+    @Test
+    void userRegister() {
+        String userAccount = "Meng";
+        String userPassword = "";
+        String checkPassword = "123456";
+        long result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "Me";
+        userPassword = "";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "Meng";
+        userPassword = "123456";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "Me ng";
+        userPassword = "12345678";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "Meng";
+        userPassword = "12345678";
+        checkPassword = "123456789";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "test2";
+        userPassword = "12345678";
+        checkPassword = "12345678";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertEquals(-1,result);
+        userAccount = "Meng";
+        userPassword = "12345678";
+        checkPassword = "12345678";
+        result = userService.userRegister(userAccount,userPassword,checkPassword);
+        Assertions.assertTrue(result>0);
+    }
 }
