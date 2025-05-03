@@ -9,5 +9,6 @@ spring:
     password: S7HmK22NMYHynYKj
 server:
   port: 8080
-
-
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
