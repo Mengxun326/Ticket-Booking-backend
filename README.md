@@ -127,11 +127,11 @@ spring:
 
 &#x20;   driver-class-name: com.mysql.cj.jdbc.Driver
 
-&#x20;   url: jdbc:mysql://47.121.180.250:3306/ticket-booking
+&#x20;   url: yoururl
 
-&#x20;   username: Ticket-Booking
+&#x20;   username: yourusername
 
-&#x20;   password: S7HmK22NMYHynYKj
+&#x20;   password: yourpassword
 
 server:
 
