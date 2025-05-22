@@ -24,12 +24,17 @@ public class UserServiceImplTest {
     public void testAddUser(){
         User user = new User();
         user.setUsername("tes2t");
-        user.setUserAccount("test2");
+        user.setUseraccount("test2");
         user.setAvatar("https://meng-xun-image-host.oss-cn-shanghai.aliyuncs.com/img/android-chrome-192x192.png");
         user.setGender(0);
-        user.setUserPassword("test2");
-        user.setPhone("123");
-        user.setEmail("123@test.com");
+        user.setUserpassword("test2");
+        user.setPhone("");
+        user.setEmail("");
+        user.setUserstatus(0);
+        user.setUserrole(0);
+        user.setCreatetime(new Date());
+        user.setUpdatetime(new Date());
+        user.setIsdelete(0);
         boolean result = userService.save(user);
         System.out.println(user.getId());
         assertTrue(result);

@@ -2,49 +2,50 @@ package com.mengxun.ticketbookingbackend.model.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 /**
  * 用户表
- * @TableName user
+ * @TableName t_user
  */
 @TableName(value ="user")
 @Data
-public class User {
+public class User implements Serializable {
     /**
-     * 主键
+     * 用户ID
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户名
+     * 用户昵称
      */
     private String username;
 
     /**
-     * 登陆账号
+     * 用户账号
      */
-    private String userAccount;
+    private String useraccount;
 
     /**
-     * 头像
+     * 用户头像
      */
     private String avatar;
 
     /**
-     * 性别
+     * 性别 0-未知 1-男 2-女
      */
     private Integer gender;
 
     /**
      * 密码
      */
-    private String userPassword;
+    private String userpassword;
 
     /**
-     * 电话
+     * 手机号
      */
     private String phone;
 
@@ -54,23 +55,30 @@ public class User {
     private String email;
 
     /**
-     * 状态
+     * 用户状态 0-正常 1-禁用
      */
-    private Integer userStatus;
+    private Integer userstatus;
+
+    /**
+     * 用户角色 0-普通用户 1-管理员
+     */
+    private Integer userrole;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createtime;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private Date updatetime;
 
     /**
-     * 是否删除
+     * 是否删除 0-未删除 1-已删除
      */
-    @TableLogic
-    private Integer isDelete;
+    private Integer isdelete;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 }

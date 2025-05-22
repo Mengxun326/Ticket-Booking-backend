@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.121.180.250:3306/ticket-booking
     username: Ticket-Booking
-    password: S7HmK22NMYHynYKj
+    password: tkKdyWSH3sbdHLKS
 server:
   port: 8080
 mybatis-plus:

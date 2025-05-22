@@ -81,8 +81,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String encrypPassword = DigestUtils.md5DigestAsHex((SALT+userPassword).getBytes());
         //3.插入数据
         User user = new User();
-        user.setUserAccount(userAccount);
-        user.setUserPassword(encrypPassword);
+        user.setUseraccount(userAccount);
+        user.setUserpassword(encrypPassword);
         boolean saveResult = this.save(user);
         if(!saveResult){
             return -1;
@@ -132,13 +132,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         User safetyUser = new User();
         safetyUser.setId(user.getId());
         safetyUser.setUsername(user.getUsername());
-        safetyUser.setUserAccount(user.getUserAccount());
+        safetyUser.setUseraccount(user.getUseraccount());
         safetyUser.setAvatar(user.getAvatar());
         safetyUser.setGender(user.getGender());
         safetyUser.setPhone(user.getPhone());
         safetyUser.setEmail(user.getEmail());
-        safetyUser.setUserStatus(user.getUserStatus());
-        safetyUser.setCreateTime(user.getCreateTime());
+        safetyUser.setUserstatus(user.getUserstatus());
+        safetyUser.setCreatetime(user.getCreatetime());
         //4.记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE,user);
         return safetyUser;
