@@ -1,11 +1,10 @@
 package com.mengxun.ticketbookingbackend.service.impl;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mengxun.ticketbookingbackend.service.UserService;
-import com.mengxun.ticketbookingbackend.model.domain.User;
 import com.mengxun.ticketbookingbackend.mapper.UserMapper;
+import com.mengxun.ticketbookingbackend.model.domain.User;
+import com.mengxun.ticketbookingbackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,10 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.security.MessageDigest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.mengxun.ticketbookingbackend.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
  * 用户服务实现类
@@ -31,10 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * 盐值，混淆密码
      */
     private static final String SALT = "meng";
-    /**
-     * 用户登陆态键
-     */
-    private static final String USER_LOGIN_STATE  = "userLoginState";
+
     @Resource
     private  UserMapper userMapper;
 
@@ -91,7 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public User doLogin(String userAccount, String userPassword, HttpServletRequest request) {
+    public User userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         //1.校验
         // 不能为空
         if(StringUtils.isAnyBlank(userAccount,userPassword))
@@ -129,18 +126,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return null;
         }
         //3.用户脱敏
-        User safetyUser = new User();
-        safetyUser.setId(user.getId());
-        safetyUser.setUsername(user.getUsername());
-        safetyUser.setUseraccount(user.getUseraccount());
-        safetyUser.setAvatar(user.getAvatar());
-        safetyUser.setGender(user.getGender());
-        safetyUser.setPhone(user.getPhone());
-        safetyUser.setEmail(user.getEmail());
-        safetyUser.setUserstatus(user.getUserstatus());
-        safetyUser.setCreatetime(user.getCreatetime());
+        User safetyUser = getSafetyUser(user);
         //4.记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE,user);
+        return safetyUser;
+    }
+
+    /**
+     * 用户脱敏
+     * @param originUser
+     * @return
+     */
+    @Override
+    public User getSafetyUser(User originUser)
+    {
+        User safetyUser = new User();
+        safetyUser.setId(originUser.getId());
+        safetyUser.setUsername(originUser.getUsername());
+        safetyUser.setUseraccount(originUser.getUseraccount());
+        safetyUser.setAvatar(originUser.getAvatar());
+        safetyUser.setGender(originUser.getGender());
+        safetyUser.setPhone(originUser.getPhone());
+        safetyUser.setEmail(originUser.getEmail());
+        safetyUser.setUserrole(originUser.getUserrole());
+        safetyUser.setUserstatus(originUser.getUserstatus());
+        safetyUser.setCreatetime(originUser.getCreatetime());
         return safetyUser;
     }
 }
